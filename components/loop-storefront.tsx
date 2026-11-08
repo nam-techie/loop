@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ArrowDown, ArrowUpRight, Menu, ShoppingBag, X } from 'lucide-react'
 
 const images = [
@@ -16,6 +16,31 @@ const products = [
 ]
 
 type Page = 'home' | 'collections' | 'about' | 'contact' | 'cart'
+
+function useScrollProgress() {
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    let frame = 0
+    const update = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const max = document.documentElement.scrollHeight - window.innerHeight
+        setProgress(max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0)
+      })
+    }
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [])
+
+  return progress
+}
 
 export function LoopStorefront() {
   const [page, setPage] = useState<Page>('home')
@@ -56,9 +81,12 @@ export function LoopStorefront() {
 }
 
 function HomePage({ navigate }: { navigate: (page: Page) => void }) {
+  const progress = useScrollProgress()
+
   return <>
-    <section className="relative flex min-h-[78vh] items-end overflow-hidden pt-20"><img src={images[0]} alt="Model wearing Loop field jacket in the forest" className="absolute inset-0 h-full w-full object-cover opacity-60" /><div className="absolute inset-0 bg-gradient-to-t from-[#002901] via-[#002901]/25 to-[#002901]/30" /><div className="relative mx-auto w-full max-w-[1400px] px-5 pb-14 md:px-10 md:pb-20"><p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#fd3e00]">01 — Hero banner / SS26</p><h1 className="max-w-4xl font-display text-[clamp(4.8rem,14vw,12rem)] font-bold leading-[0.75] tracking-[-0.09em]">Made<br /><span className="ml-[12vw] text-[#fd3e00]">to roam.</span></h1><button onClick={() => navigate('collections')} className="mt-10 inline-flex items-center gap-3 border border-[#f2f0e8]/50 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] hover:border-[#fd3e00] hover:bg-[#fd3e00] hover:text-[#002901]">Shop the collection <ArrowDown size={15} /></button></div></section>
-    <section className="mx-auto grid max-w-[1400px] gap-10 px-5 py-24 md:grid-cols-12 md:px-10 md:py-32"><div className="md:col-span-5"><p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#fd3e00]">02 — Brand message</p><h2 className="mt-7 font-display text-6xl font-bold leading-[0.84] tracking-[-0.08em] md:text-8xl">Built for<br />the in-<br /><span className="text-[#fd3e00]">between.</span></h2></div><div className="md:col-span-5 md:col-start-8 md:pt-20"><p className="text-xl leading-8 text-[#f2f0e8]/80">LOOP is a study of movement, utility, and the places where city meets wild. Every garment is made to collect stories, not dust.</p><button onClick={() => navigate('about')} className="mt-8 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em]">Our story <ArrowUpRight size={15} className="text-[#fd3e00]" /></button></div></section>
+    <div className="fixed bottom-0 left-5 top-20 z-40 hidden w-px bg-[#f2f0e8]/15 md:block" aria-hidden="true"><div className="relative w-full bg-[#fd3e00] transition-[height] duration-100" style={{ height: `${progress * 100}%` }}><span className="absolute -left-[5px] top-0 h-3 w-3 rounded-full bg-[#fd3e00] shadow-[0_0_0_4px_#002901]" /></div></div>
+    <section className="relative flex min-h-[110vh] items-end overflow-hidden pt-20"><img src={images[0]} alt="Model wearing Loop field jacket in the forest" className="absolute inset-0 h-full w-full object-cover opacity-55" style={{ transform: `translateY(${progress * -12}%) scale(${1 + progress * 0.08})` }} /><div className="absolute inset-0 bg-gradient-to-t from-[#002901] via-[#002901]/25 to-[#002901]/30" /><div className="relative mx-auto w-full max-w-[1400px] px-5 pb-20 md:px-10 md:pb-32"><p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#fd3e00]">01 — Hero banner / SS26</p><div className="overflow-visible"><h1 className="whitespace-nowrap font-display text-[clamp(5rem,15vw,13rem)] font-bold leading-[0.72] tracking-[-0.1em] transition-transform duration-75" style={{ transform: `translateX(${progress * -18}vw)` }}>Made <span className="text-[#fd3e00]">to roam.</span></h1></div><p className="mt-8 max-w-sm text-sm leading-6 text-[#f2f0e8]/70" style={{ opacity: Math.max(0, 1 - progress * 2), transform: `translateY(${progress * -50}px)` }}>Utility silhouettes shaped by the forest. Designed in Saigon, made for the long way around.</p><button onClick={() => navigate('collections')} className="mt-10 inline-flex items-center gap-3 border border-[#f2f0e8]/50 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] hover:border-[#fd3e00] hover:bg-[#fd3e00] hover:text-[#002901]">Shop the collection <ArrowDown size={15} /></button></div></section>
+    <section className="relative mx-auto grid min-h-[90vh] max-w-[1400px] items-center gap-10 overflow-hidden px-5 py-24 md:grid-cols-12 md:px-10 md:py-32"><div className="md:col-span-5" style={{ transform: `translateY(${(progress - 0.35) * -80}px)` }}><p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#fd3e00]">02 — Brand message</p><h2 className="mt-7 font-display text-6xl font-bold leading-[0.84] tracking-[-0.08em] md:text-8xl">Built for<br />the in-<br /><span className="text-[#fd3e00]">between.</span></h2></div><div className="md:col-span-5 md:col-start-8 md:pt-20" style={{ transform: `translateY(${(progress - 0.45) * 100}px)` }}><img src={images[2]} alt="Loop jacket resting among moss and forest floor" className="mb-8 aspect-[0.85] w-full object-cover" style={{ transform: `translateY(${progress * -10}%)` }} /><p className="text-xl leading-8 text-[#f2f0e8]/80">LOOP is a study of movement, utility, and the places where city meets wild. Every garment is made to collect stories, not dust.</p><button onClick={() => navigate('about')} className="mt-8 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em]">Our story <ArrowUpRight size={15} className="text-[#fd3e00]" /></button></div></section>
     <Footer navigate={navigate} />
   </>
 }
