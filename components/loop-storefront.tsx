@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowDown, ArrowUpRight, ChevronDown, Instagram, Menu, ShoppingBag, X } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Menu, ShoppingBag, X } from 'lucide-react'
 
 const images = [
   'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-X4qbzVaf2mf0Dyi8tgvncEQ0JziUMH.png',
@@ -70,7 +70,7 @@ export function LoopStorefront() {
 
       <section id="journal" className="relative overflow-hidden px-5 py-24 md:px-10 md:py-36"><div className="mx-auto grid max-w-[1400px] items-center gap-12 md:grid-cols-2"><div><p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#a9b65b]">03 — Field journal</p><h2 className="mt-7 max-w-xl font-display text-6xl font-bold leading-[0.86] tracking-[-0.08em] md:text-8xl">The forest<br /><span className="text-[#a9b65b]">keeps score.</span></h2><p className="mt-8 max-w-md text-sm leading-6 text-[#f1ead6]/65">Notes from the trail: on weathered canvas, slow mornings, and dressing with intent.</p><button className="mt-8 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em]">Read the journal <ArrowUpRight size={15} className="text-[#a9b65b]" /></button></div><div className="relative mx-auto w-full max-w-md"><div className="absolute -inset-5 border border-[#a9b65b]/30" /><img src={images[2]} alt="Loop jacket resting among moss and forest floor" className="relative aspect-[0.78] w-full object-cover" /><span className="absolute -bottom-6 -left-7 font-display text-7xl font-bold tracking-[-0.1em] text-[#a9b65b]">LOOP</span></div></div></section>
 
-      <footer id="cart" className="border-t border-[#f1ead6]/15 px-5 py-10 md:px-10"><div className="mx-auto flex max-w-[1400px] flex-col gap-8 md:flex-row md:items-end md:justify-between"><div><div className="font-display text-3xl font-bold tracking-[-0.08em]">LOOP<span className="text-[#a9b65b]">.</span></div><p className="mt-3 text-xs text-[#f1ead6]/50">Utility clothing for outside the lines.</p></div><div className="flex flex-wrap gap-6 text-[10px] uppercase tracking-[0.18em] text-[#f1ead6]/65"><a href="#shop">Shop</a><a href="#story">About</a><a href="#journal">Journal</a><a href="#instagram" aria-label="Instagram"><Instagram size={15} /></a></div><p className="text-[9px] uppercase tracking-[0.18em] text-[#f1ead6]/35">© 2026 Loop Studio / Saigon</p></div></footer>
+      <footer id="cart" className="border-t border-[#f1ead6]/15 px-5 py-10 md:px-10"><div className="mx-auto flex max-w-[1400px] flex-col gap-8 md:flex-row md:items-end md:justify-between"><div><div className="font-display text-3xl font-bold tracking-[-0.08em]">LOOP<span className="text-[#a9b65b]">.</span></div><p className="mt-3 text-xs text-[#f1ead6]/50">Utility clothing for outside the lines.</p></div><div className="flex flex-wrap gap-6 text-[10px] uppercase tracking-[0.18em] text-[#f1ead6]/65"><a href="#shop">Shop</a><a href="#story">About</a><a href="#journal">Journal</a><a href="#instagram" aria-label="Instagram">IG</a></div><p className="text-[9px] uppercase tracking-[0.18em] text-[#f1ead6]/35">© 2026 Loop Studio / Saigon</p></div></footer>
     </main>
   )
 }
