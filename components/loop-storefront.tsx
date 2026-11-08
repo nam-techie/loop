@@ -1,76 +1,57 @@
-'use client'
-
-import { useState } from 'react'
-import { ArrowDown, ArrowUpRight, Menu, ShoppingBag, X } from 'lucide-react'
-
-const images = [
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-X4qbzVaf2mf0Dyi8tgvncEQ0JziUMH.png',
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%7B973C1E94-ED81-4E8C-AF39-0840D6460AB6%7D-AGkPlBG89SGzL4G6L0EjjJPEZby2MS.png',
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%7B3690D87C-F736-4A0D-BF2E-215E659BDB12%7D-laNpIvX3w99z8QCVrh64jSGUQU6H2O.png',
-]
-
-const products = [
-  { name: 'FIELD JACKET 01', price: '$168', image: images[0], label: 'CORE PIECE' },
-  { name: 'LOOP OVERSHIRT', price: '$128', image: images[1], label: 'NEW ARRIVAL' },
-  { name: 'MOSS WORK JACKET', price: '$188', image: images[2], label: 'LIMITED' },
+const columns = [
+  { title: 'HOME', items: ['Hero Banner', 'Brand Message', 'Footer'] },
+  { title: 'COLLECTIONS', items: ['Product List'] },
+  { title: 'ABOUT', items: ['Our Story'] },
+  { title: 'CONTACT', items: ['Social Links', 'FAQs'] },
+  { title: 'CART', items: ['Cart Page', 'Checkout'] },
 ]
 
 export function LoopStorefront() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [cartCount, setCartCount] = useState(0)
-  const [selected, setSelected] = useState(0)
-
-  const addToCart = () => setCartCount((count) => count + 1)
-
   return (
-    <main className="min-h-screen overflow-hidden bg-[#151b11] text-[#f1ead6] selection:bg-[#a9b65b] selection:text-[#151b11]">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-[#f1ead6]/15 bg-[#151b11]/80 backdrop-blur-md">
-        <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-5 md:px-10">
-          <a href="#top" className="font-display text-2xl font-bold tracking-[-0.08em]" aria-label="Loop home">LOOP<span className="text-[#a9b65b]">.</span></a>
-          <nav className="hidden items-center gap-8 text-[10px] font-semibold uppercase tracking-[0.22em] md:flex" aria-label="Main navigation">
-            <a className="text-[#a9b65b]" href="#shop">Shop</a>
-            <a className="transition-colors hover:text-[#a9b65b]" href="#story">Our story</a>
-            <a className="transition-colors hover:text-[#a9b65b]" href="#journal">Journal</a>
+    <main className="min-h-screen bg-[#151b11] text-[#f1ead6] selection:bg-[#a9b65b] selection:text-[#151b11]">
+      <header className="border-b border-[#f1ead6]/15 px-5 py-5 md:px-10">
+        <div className="mx-auto flex max-w-[1500px] items-start justify-between gap-8">
+          <nav className="flex flex-wrap gap-x-8 gap-y-3 text-[9px] font-semibold uppercase tracking-[0.18em]" aria-label="Project sections">
+            <a className="text-[#a9b65b]" href="#introduction">Introduction</a>
+            <a className="transition-colors hover:text-[#a9b65b]" href="#brand-identity">Brand Identity</a>
+            <a className="transition-colors hover:text-[#a9b65b]" href="#application">Application</a>
+            <a className="border-b border-[#a9b65b] pb-1 text-[#a9b65b]" href="#sitemap">Campaign website</a>
+            <a className="transition-colors hover:text-[#a9b65b]" href="#timeline">Timeline</a>
           </nav>
-          <div className="flex items-center gap-5">
-            <a href="#cart" className="relative flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em]" aria-label={`Shopping bag with ${cartCount} items`}>
-              <ShoppingBag size={17} strokeWidth={1.4} /> <span className="hidden sm:inline">Bag</span>
-              <span className="absolute -right-3 -top-3 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#a9b65b] px-1 text-[9px] text-[#151b11]">{cartCount}</span>
-            </a>
-            <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
-          </div>
+          <div className="hidden text-right text-[9px] uppercase leading-4 tracking-[0.15em] text-[#f1ead6]/55 sm:block">FPT Capstone Project<br /><span className="text-[#a9b65b]">Summer 2026 — 70%</span></div>
         </div>
-        {menuOpen && <nav className="flex flex-col gap-5 border-t border-[#f1ead6]/15 bg-[#151b11] px-5 py-6 text-xs uppercase tracking-[0.2em] md:hidden"><a href="#shop" onClick={() => setMenuOpen(false)}>Shop</a><a href="#story" onClick={() => setMenuOpen(false)}>Our story</a><a href="#journal" onClick={() => setMenuOpen(false)}>Journal</a></nav>}
       </header>
 
-      <section id="top" className="relative flex min-h-[92vh] items-end pt-20">
-        <img src={images[0]} alt="Model wearing the Loop field jacket in a dense forest" className="absolute inset-0 h-full w-full object-cover object-center opacity-65" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#151b11] via-[#151b11]/15 to-[#151b11]/35" />
-        <div className="relative mx-auto w-full max-w-[1400px] px-5 pb-12 md:px-10 md:pb-20">
-          <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#b9c66b]">SS26 / Field notes 001</p>
-          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-            <h1 className="max-w-3xl font-display text-[clamp(4.5rem,14vw,12rem)] font-bold leading-[0.76] tracking-[-0.09em]">Made<br /><span className="ml-[12vw] text-[#b9c66b]">to roam.</span></h1>
-            <div className="max-w-xs pb-2 text-sm leading-6 text-[#f1ead6]/75">Utility silhouettes shaped by the forest. Designed in Saigon, made for the long way around.</div>
+      <section id="sitemap" className="mx-auto min-h-[calc(100vh-74px)] max-w-[1500px] px-5 pb-20 pt-14 md:px-10 md:pt-20">
+        <div className="max-w-xl">
+          <p className="font-display text-5xl font-bold uppercase leading-[0.8] tracking-[-0.07em] text-[#a9b65b] md:text-7xl">Website</p>
+          <h1 className="mt-1 font-display text-6xl font-bold italic leading-[0.8] tracking-[-0.08em] text-[#f1ead6] md:text-8xl">Sitemap</h1>
+        </div>
+
+        <div className="relative mx-auto mt-24 max-w-[1200px] md:mt-28">
+          <div className="mx-auto flex w-fit items-center border-2 border-[#a9b65b] bg-[#a9b65b] px-7 py-3 font-display text-xl font-bold tracking-[-0.04em] text-[#151b11] shadow-[5px_5px_0_#0a0e08]">LOOP<span className="text-[#f1ead6]">.</span></div>
+          <div className="mx-auto h-10 w-px bg-[#a9b65b]" />
+          <div className="hidden h-px bg-[#a9b65b] md:block" />
+          <div className="grid gap-8 md:grid-cols-5 md:gap-5">
+            {columns.map((column, index) => (
+              <section key={column.title} className="relative flex flex-col items-center">
+                <div className="absolute -top-8 hidden h-8 w-px bg-[#a9b65b] md:block" />
+                <a href={`#${column.title.toLowerCase()}`} className="z-10 flex h-12 w-full items-center justify-center border-2 border-[#a9b65b] bg-[#a9b65b] text-[11px] font-bold uppercase tracking-[0.06em] text-[#151b11] transition-all hover:bg-[#f1ead6] hover:text-[#151b11]">{column.title}</a>
+                <div className="flex w-full flex-col items-center">
+                  {column.items.map((item) => (
+                    <a key={item} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} className="relative mt-9 flex min-h-12 w-full items-center justify-center border border-[#a9b65b]/55 bg-[#222d19] px-3 text-center text-sm text-[#f1ead6]/90 transition-all hover:border-[#a9b65b] hover:bg-[#a9b65b] hover:text-[#151b11]">
+                      <span className="absolute -top-9 left-1/2 h-9 w-px -translate-x-1/2 bg-[#a9b65b]/70" />
+                      {item}
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ))}
           </div>
-          <a href="#shop" className="mt-10 inline-flex items-center gap-3 border border-[#f1ead6]/50 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors hover:border-[#b9c66b] hover:bg-[#b9c66b] hover:text-[#151b11]">Explore collection <ArrowDown size={15} /></a>
         </div>
-        <div className="absolute bottom-7 right-5 hidden text-right text-[9px] uppercase tracking-[0.2em] text-[#f1ead6]/60 md:block md:right-10">A quiet study<br />in movement / 01</div>
+
+        <div className="mx-auto mt-20 flex max-w-[1200px] items-center justify-between border-t border-[#f1ead6]/15 pt-5 text-[9px] uppercase tracking-[0.18em] text-[#f1ead6]/45"><span>LOOP / Campaign website architecture</span><span>01 — 05</span></div>
       </section>
-
-      <section id="story" className="mx-auto grid max-w-[1400px] gap-12 px-5 py-24 md:grid-cols-12 md:gap-8 md:px-10 md:py-36">
-        <div className="md:col-span-4"><p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#a9b65b]">01 — The idea</p><h2 className="mt-8 font-display text-5xl font-bold leading-[0.9] tracking-[-0.06em] md:text-7xl">Built for<br />the in-<br />between.</h2></div>
-        <div className="md:col-span-5 md:col-start-8 md:pt-16"><p className="text-xl leading-8 text-[#f1ead6]/85 md:text-2xl md:leading-9">LOOP is a study of movement, utility, and the places where city meets wild. Every garment is made to collect stories, not dust.</p><div className="mt-10 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#a9b65b]">Read our story <ArrowUpRight size={15} /></div></div>
-      </section>
-
-      <section id="shop" className="bg-[#e1dfc8] px-5 py-20 text-[#151b11] md:px-10 md:py-28">
-        <div className="mx-auto max-w-[1400px]"><div className="mb-12 flex items-end justify-between"><div><p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#7d8d3e]">02 — The collection</p><h2 className="mt-5 font-display text-6xl font-bold leading-[0.85] tracking-[-0.08em] md:text-8xl">Field<br />uniforms.</h2></div><span className="hidden text-[10px] uppercase tracking-[0.2em] text-[#151b11]/50 md:block">03 / 03 pieces</span></div>
-          <div className="grid gap-5 md:grid-cols-3">{products.map((product, index) => <article key={product.name} className="group"><button onClick={() => setSelected(index)} className={`relative block aspect-[0.78] w-full overflow-hidden text-left ${selected === index ? 'ring-2 ring-[#7d8d3e] ring-offset-4 ring-offset-[#e1dfc8]' : ''}`}><img src={product.image} alt={`${product.name} product photograph`} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#0b0f08]/60 via-transparent to-transparent" /><span className="absolute left-4 top-4 bg-[#a9b65b] px-2 py-1 text-[9px] font-bold uppercase tracking-[0.16em]">{product.label}</span><span className="absolute bottom-4 right-4 rounded-full border border-[#f1ead6]/60 p-2 text-[#f1ead6]"><ArrowUpRight size={18} /></span></button><div className="flex justify-between pt-4 text-[11px] font-semibold uppercase tracking-[0.15em]"><span>{product.name}</span><span>{product.price}</span></div><button onClick={addToCart} className="mt-3 border-b border-[#151b11]/40 pb-1 text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors hover:border-[#7d8d3e] hover:text-[#7d8d3e]">Add to bag +</button></article>)}</div>
-        </div>
-      </section>
-
-      <section id="journal" className="relative overflow-hidden px-5 py-24 md:px-10 md:py-36"><div className="mx-auto grid max-w-[1400px] items-center gap-12 md:grid-cols-2"><div><p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#a9b65b]">03 — Field journal</p><h2 className="mt-7 max-w-xl font-display text-6xl font-bold leading-[0.86] tracking-[-0.08em] md:text-8xl">The forest<br /><span className="text-[#a9b65b]">keeps score.</span></h2><p className="mt-8 max-w-md text-sm leading-6 text-[#f1ead6]/65">Notes from the trail: on weathered canvas, slow mornings, and dressing with intent.</p><button className="mt-8 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em]">Read the journal <ArrowUpRight size={15} className="text-[#a9b65b]" /></button></div><div className="relative mx-auto w-full max-w-md"><div className="absolute -inset-5 border border-[#a9b65b]/30" /><img src={images[2]} alt="Loop jacket resting among moss and forest floor" className="relative aspect-[0.78] w-full object-cover" /><span className="absolute -bottom-6 -left-7 font-display text-7xl font-bold tracking-[-0.1em] text-[#a9b65b]">LOOP</span></div></div></section>
-
-      <footer id="cart" className="border-t border-[#f1ead6]/15 px-5 py-10 md:px-10"><div className="mx-auto flex max-w-[1400px] flex-col gap-8 md:flex-row md:items-end md:justify-between"><div><div className="font-display text-3xl font-bold tracking-[-0.08em]">LOOP<span className="text-[#a9b65b]">.</span></div><p className="mt-3 text-xs text-[#f1ead6]/50">Utility clothing for outside the lines.</p></div><div className="flex flex-wrap gap-6 text-[10px] uppercase tracking-[0.18em] text-[#f1ead6]/65"><a href="#shop">Shop</a><a href="#story">About</a><a href="#journal">Journal</a><a href="#instagram" aria-label="Instagram">IG</a></div><p className="text-[9px] uppercase tracking-[0.18em] text-[#f1ead6]/35">© 2026 Loop Studio / Saigon</p></div></footer>
     </main>
   )
 }
