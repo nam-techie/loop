@@ -1,57 +1,76 @@
-const columns = [
-  { title: 'HOME', items: ['Hero Banner', 'Brand Message', 'Footer'] },
-  { title: 'COLLECTIONS', items: ['Product List'] },
-  { title: 'ABOUT', items: ['Our Story'] },
-  { title: 'CONTACT', items: ['Social Links', 'FAQs'] },
-  { title: 'CART', items: ['Cart Page', 'Checkout'] },
+'use client'
+
+import { useState } from 'react'
+import { ArrowDown, ArrowUpRight, Menu, ShoppingBag, X } from 'lucide-react'
+
+const images = [
+  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-X4qbzVaf2mf0Dyi8tgvncEQ0JziUMH.png',
+  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%7B973C1E94-ED81-4E8C-AF39-0840D6460AB6%7D-AGkPlBG89SGzL4G6L0EjjJPEZby2MS.png',
+  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%7B3690D87C-F736-4A0D-BF2E-215E659BDB12%7D-laNpIvX3w99z8QCVrh64jSGUQU6H2O.png',
 ]
 
+const products = [
+  { name: 'Field Jacket 01', price: '$168', image: images[0], note: 'Weathered canvas / Olive' },
+  { name: 'Loop Overshirt', price: '$128', image: images[1], note: 'Heavy cotton / Moss' },
+  { name: 'Moss Work Jacket', price: '$188', image: images[2], note: 'Utility twill / Forest' },
+]
+
+type Page = 'home' | 'collections' | 'about' | 'contact' | 'cart'
+
 export function LoopStorefront() {
+  const [page, setPage] = useState<Page>('home')
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [cartCount, setCartCount] = useState(0)
+
+  const navigate = (nextPage: Page) => {
+    setPage(nextPage)
+    setMenuOpen(false)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const addToCart = () => setCartCount((count) => count + 1)
+
   return (
     <main className="min-h-screen bg-[#151b11] text-[#f1ead6] selection:bg-[#a9b65b] selection:text-[#151b11]">
-      <header className="border-b border-[#f1ead6]/15 px-5 py-5 md:px-10">
-        <div className="mx-auto flex max-w-[1500px] items-start justify-between gap-8">
-          <nav className="flex flex-wrap gap-x-8 gap-y-3 text-[9px] font-semibold uppercase tracking-[0.18em]" aria-label="Project sections">
-            <a className="text-[#a9b65b]" href="#introduction">Introduction</a>
-            <a className="transition-colors hover:text-[#a9b65b]" href="#brand-identity">Brand Identity</a>
-            <a className="transition-colors hover:text-[#a9b65b]" href="#application">Application</a>
-            <a className="border-b border-[#a9b65b] pb-1 text-[#a9b65b]" href="#sitemap">Campaign website</a>
-            <a className="transition-colors hover:text-[#a9b65b]" href="#timeline">Timeline</a>
+      <header className="sticky top-0 z-50 border-b border-[#f1ead6]/15 bg-[#151b11]/90 backdrop-blur-md">
+        <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-5 md:px-10">
+          <button onClick={() => navigate('home')} className="font-display text-2xl font-bold tracking-[-0.08em]" aria-label="Loop home">LOOP<span className="text-[#a9b65b]">.</span></button>
+          <nav className="hidden items-center gap-8 text-[10px] font-semibold uppercase tracking-[0.22em] md:flex" aria-label="Main navigation">
+            {(['home', 'collections', 'about', 'contact'] as Page[]).map((item) => <button key={item} onClick={() => navigate(item)} className={`transition-colors ${page === item ? 'text-[#a9b65b]' : 'hover:text-[#a9b65b]'}`}>{item === 'home' ? 'Home' : item}</button>)}
           </nav>
-          <div className="hidden text-right text-[9px] uppercase leading-4 tracking-[0.15em] text-[#f1ead6]/55 sm:block">FPT Capstone Project<br /><span className="text-[#a9b65b]">Summer 2026 — 70%</span></div>
-        </div>
-      </header>
-
-      <section id="sitemap" className="mx-auto min-h-[calc(100vh-74px)] max-w-[1500px] px-5 pb-20 pt-14 md:px-10 md:pt-20">
-        <div className="max-w-xl">
-          <p className="font-display text-5xl font-bold uppercase leading-[0.8] tracking-[-0.07em] text-[#a9b65b] md:text-7xl">Website</p>
-          <h1 className="mt-1 font-display text-6xl font-bold italic leading-[0.8] tracking-[-0.08em] text-[#f1ead6] md:text-8xl">Sitemap</h1>
-        </div>
-
-        <div className="relative mx-auto mt-24 max-w-[1200px] md:mt-28">
-          <div className="mx-auto flex w-fit items-center border-2 border-[#a9b65b] bg-[#a9b65b] px-7 py-3 font-display text-xl font-bold tracking-[-0.04em] text-[#151b11] shadow-[5px_5px_0_#0a0e08]">LOOP<span className="text-[#f1ead6]">.</span></div>
-          <div className="mx-auto h-10 w-px bg-[#a9b65b]" />
-          <div className="hidden h-px bg-[#a9b65b] md:block" />
-          <div className="grid gap-8 md:grid-cols-5 md:gap-5">
-            {columns.map((column, index) => (
-              <section key={column.title} className="relative flex flex-col items-center">
-                <div className="absolute -top-8 hidden h-8 w-px bg-[#a9b65b] md:block" />
-                <a href={`#${column.title.toLowerCase()}`} className="z-10 flex h-12 w-full items-center justify-center border-2 border-[#a9b65b] bg-[#a9b65b] text-[11px] font-bold uppercase tracking-[0.06em] text-[#151b11] transition-all hover:bg-[#f1ead6] hover:text-[#151b11]">{column.title}</a>
-                <div className="flex w-full flex-col items-center">
-                  {column.items.map((item) => (
-                    <a key={item} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} className="relative mt-9 flex min-h-12 w-full items-center justify-center border border-[#a9b65b]/55 bg-[#222d19] px-3 text-center text-sm text-[#f1ead6]/90 transition-all hover:border-[#a9b65b] hover:bg-[#a9b65b] hover:text-[#151b11]">
-                      <span className="absolute -top-9 left-1/2 h-9 w-px -translate-x-1/2 bg-[#a9b65b]/70" />
-                      {item}
-                    </a>
-                  ))}
-                </div>
-              </section>
-            ))}
+          <div className="flex items-center gap-5">
+            <button onClick={() => navigate('cart')} className="relative flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em]" aria-label={`Cart with ${cartCount} items`}><ShoppingBag size={17} strokeWidth={1.4} /><span className="hidden sm:inline">Cart</span><span className="absolute -right-3 -top-3 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#a9b65b] px-1 text-[9px] text-[#151b11]">{cartCount}</span></button>
+            <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
           </div>
         </div>
+        {menuOpen && <nav className="flex flex-col gap-5 border-t border-[#f1ead6]/15 bg-[#151b11] px-5 py-6 text-xs uppercase tracking-[0.2em] md:hidden">{(['home', 'collections', 'about', 'contact', 'cart'] as Page[]).map((item) => <button key={item} className="text-left" onClick={() => navigate(item)}>{item}</button>)}</nav>}
+      </header>
 
-        <div className="mx-auto mt-20 flex max-w-[1200px] items-center justify-between border-t border-[#f1ead6]/15 pt-5 text-[9px] uppercase tracking-[0.18em] text-[#f1ead6]/45"><span>LOOP / Campaign website architecture</span><span>01 — 05</span></div>
-      </section>
+      {page === 'home' && <HomePage navigate={navigate} />}
+      {page === 'collections' && <CollectionsPage addToCart={addToCart} />}
+      {page === 'about' && <AboutPage />}
+      {page === 'contact' && <ContactPage />}
+      {page === 'cart' && <CartPage cartCount={cartCount} navigate={navigate} />}
     </main>
   )
 }
+
+function HomePage({ navigate }: { navigate: (page: Page) => void }) {
+  return <>
+    <section className="relative flex min-h-[78vh] items-end overflow-hidden pt-20"><img src={images[0]} alt="Model wearing Loop field jacket in the forest" className="absolute inset-0 h-full w-full object-cover opacity-60" /><div className="absolute inset-0 bg-gradient-to-t from-[#151b11] via-[#151b11]/25 to-[#151b11]/30" /><div className="relative mx-auto w-full max-w-[1400px] px-5 pb-14 md:px-10 md:pb-20"><p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#a9b65b]">01 — Hero banner / SS26</p><h1 className="max-w-4xl font-display text-[clamp(4.8rem,14vw,12rem)] font-bold leading-[0.75] tracking-[-0.09em]">Made<br /><span className="ml-[12vw] text-[#a9b65b]">to roam.</span></h1><button onClick={() => navigate('collections')} className="mt-10 inline-flex items-center gap-3 border border-[#f1ead6]/50 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] hover:border-[#a9b65b] hover:bg-[#a9b65b] hover:text-[#151b11]">Shop the collection <ArrowDown size={15} /></button></div></section>
+    <section className="mx-auto grid max-w-[1400px] gap-10 px-5 py-24 md:grid-cols-12 md:px-10 md:py-32"><div className="md:col-span-5"><p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#a9b65b]">02 — Brand message</p><h2 className="mt-7 font-display text-6xl font-bold leading-[0.84] tracking-[-0.08em] md:text-8xl">Built for<br />the in-<br /><span className="text-[#a9b65b]">between.</span></h2></div><div className="md:col-span-5 md:col-start-8 md:pt-20"><p className="text-xl leading-8 text-[#f1ead6]/80">LOOP is a study of movement, utility, and the places where city meets wild. Every garment is made to collect stories, not dust.</p><button onClick={() => navigate('about')} className="mt-8 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em]">Our story <ArrowUpRight size={15} className="text-[#a9b65b]" /></button></div></section>
+    <Footer navigate={navigate} />
+  </>
+}
+
+function CollectionsPage({ addToCart }: { addToCart: () => void }) {
+  return <section className="mx-auto min-h-[calc(100vh-80px)] max-w-[1400px] px-5 py-20 md:px-10 md:py-28"><p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#a9b65b]">Collections / Product list</p><div className="mt-5 flex items-end justify-between"><h1 className="font-display text-7xl font-bold leading-[0.8] tracking-[-0.09em] md:text-[10rem]">Field<br /><span className="text-[#a9b65b]">uniforms.</span></h1><span className="hidden text-[10px] uppercase tracking-[0.2em] text-[#f1ead6]/50 md:block">03 pieces / SS26</span></div><div className="mt-16 grid gap-6 md:grid-cols-3">{products.map((product) => <article key={product.name}><div className="group relative aspect-[0.78] overflow-hidden"><img src={product.image} alt={product.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#0b0f08]/50 to-transparent" /></div><div className="flex justify-between pt-4 text-[11px] font-semibold uppercase tracking-[0.14em]"><span>{product.name}</span><span>{product.price}</span></div><p className="mt-2 text-xs text-[#f1ead6]/50">{product.note}</p><button onClick={addToCart} className="mt-4 border-b border-[#a9b65b] pb-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#a9b65b]">Add to cart +</button></article>)}</div></section>
+}
+
+function AboutPage() { return <section className="mx-auto grid min-h-[calc(100vh-80px)] max-w-[1400px] items-center gap-12 px-5 py-20 md:grid-cols-2 md:px-10"><div><p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#a9b65b]">About / Our story</p><h1 className="mt-7 font-display text-7xl font-bold leading-[0.8] tracking-[-0.09em] md:text-[9rem]">Outside<br /><span className="text-[#a9b65b]">the lines.</span></h1><p className="mt-10 max-w-md text-lg leading-8 text-[#f1ead6]/75">We make quiet, considered clothing for people who move through the world with curiosity. Designed in Saigon. Inspired by the forest. Made for the long way around.</p></div><img src={images[1]} alt="Loop overshirt among forest leaves" className="aspect-[0.82] w-full object-cover" /></section> }
+
+function ContactPage() { return <section className="mx-auto min-h-[calc(100vh-80px)] max-w-[1400px] px-5 py-20 md:px-10 md:py-28"><p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#a9b65b]">Contact / Social links + FAQs</p><h1 className="mt-6 max-w-4xl font-display text-7xl font-bold leading-[0.8] tracking-[-0.09em] md:text-[10rem]">Keep in<br /><span className="text-[#a9b65b]">touch.</span></h1><div className="mt-20 grid gap-12 border-t border-[#f1ead6]/15 pt-8 md:grid-cols-2"><div><p className="text-sm leading-7 text-[#f1ead6]/65">Questions about fit, delivery, or the next field note? Our team is on the other side.</p><div className="mt-8 flex flex-col gap-5 text-sm"><a href="mailto:hello@loop-studio.example" className="hover:text-[#a9b65b]">hello@loop-studio.example <ArrowUpRight className="inline" size={14} /></a><a href="#instagram" className="hover:text-[#a9b65b]"><span className="mr-2 inline-block text-[#a9b65b]">IG</span> @loop.outside</a></div></div><div><details className="border-t border-[#f1ead6]/20 py-5"><summary className="cursor-pointer text-xs font-semibold uppercase tracking-[0.18em]">How does the fit run?</summary><p className="pt-4 text-sm leading-6 text-[#f1ead6]/60">Our pieces are relaxed through the body. Choose your usual size for room to move.</p></details><details className="border-y border-[#f1ead6]/20 py-5"><summary className="cursor-pointer text-xs font-semibold uppercase tracking-[0.18em]">Where do you ship?</summary><p className="pt-4 text-sm leading-6 text-[#f1ead6]/60">We ship worldwide from Saigon in recycled, low-impact packaging.</p></details></div></div></section> }
+
+function CartPage({ cartCount, navigate }: { cartCount: number, navigate: (page: Page) => void }) { return <section className="mx-auto min-h-[calc(100vh-80px)] max-w-[1400px] px-5 py-20 md:px-10 md:py-28"><p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#a9b65b]">Cart / Cart page + checkout</p><h1 className="mt-6 font-display text-7xl font-bold leading-[0.8] tracking-[-0.09em] md:text-[10rem]">Your<br /><span className="text-[#a9b65b]">field kit.</span></h1><div className="mt-20 border-t border-[#f1ead6]/20 pt-6">{cartCount === 0 ? <div className="flex flex-col items-start gap-6"><p className="text-lg text-[#f1ead6]/65">Your cart is waiting for its first story.</p><button onClick={() => navigate('collections')} className="border border-[#a9b65b] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] hover:bg-[#a9b65b] hover:text-[#151b11]">Explore collection</button></div> : <div className="flex max-w-xl justify-between text-sm"><span>Field Jacket 01 × {cartCount}</span><span>${168 * cartCount}</span></div>}</div></section> }
+
+function Footer({ navigate }: { navigate: (page: Page) => void }) { return <footer className="border-t border-[#f1ead6]/15 px-5 py-10 md:px-10"><div className="mx-auto flex max-w-[1400px] flex-col gap-7 md:flex-row md:items-end md:justify-between"><div><button onClick={() => navigate('home')} className="font-display text-3xl font-bold tracking-[-0.08em]">LOOP<span className="text-[#a9b65b]">.</span></button><p className="mt-3 text-xs text-[#f1ead6]/50">Utility clothing for outside the lines.</p></div><div className="flex gap-6 text-[10px] uppercase tracking-[0.18em] text-[#f1ead6]/65"><button onClick={() => navigate('collections')}>Shop</button><button onClick={() => navigate('about')}>About</button><button onClick={() => navigate('contact')}>Contact</button></div><p className="text-[9px] uppercase tracking-[0.18em] text-[#f1ead6]/35">© 2026 Loop Studio / Saigon</p></div></footer> }
