@@ -11,14 +11,14 @@
 
 :root {
   color-scheme: dark;
-  --background: #151b11;
-  --foreground: #f1ead6;
-  --font-inter: 'Arial', sans-serif;
-  --font-display: 'Arial Black', 'Arial', sans-serif;
+  --background: #002901;
+  --foreground: #f2f0e8;
+  --font-inter: 'Roboto', Arial, sans-serif;
+  --font-display: 'Alega', 'Arial Black', Impact, sans-serif;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: #151b11; color: #f1ead6; font-family: var(--font-inter); }
+body { margin: 0; background: #002901; color: #f2f0e8; font-family: var(--font-inter); }
 button, a { -webkit-tap-highlight-color: transparent; }
-button:focus-visible, a:focus-visible { outline: 2px solid #a9b65b; outline-offset: 4px; }
+button:focus-visible, a:focus-visible { outline: 2px solid #fd3e00; outline-offset: 4px; }
