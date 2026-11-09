@@ -26,7 +26,8 @@ export const collectionFrames: { id: string; mobileId?: string; color: Color; ti
   { id: '6532', mobileId: '6533', color: 'white', title: 'Make it your own', caption: 'The details are only the beginning. The rest is your story.', alt: 'Sleeve and shoulder details of the Warm White LOOP long sleeve worn in the forest' },
 ]
 
-export const contactChannels: { name: string; url: string | null }[] = [
-  { name: 'Email', url: null },
+export const contactChannels: { name: string; label?: string; url: string | null }[] = [
+  { name: 'Phone', label: '+84 909 767 676', url: 'tel:+84909767676' },
+  { name: 'Email', label: 'infor@loop.com', url: 'mailto:infor@loop.com' },
   { name: 'Instagram', url: null },
 ]

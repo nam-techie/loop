@@ -18,13 +18,13 @@ export function AboutSection() {
 const faqs = [
   ['What is the Field Collection?', 'One long-sleeve silhouette, explored in two expressions: Forest and Warm White. A visual study of trail spirit and everyday style.'],
   ['How can I explore the collection?', 'Just keep scrolling. Each photograph appears in sequence, followed by the LOOP story and our contact information. Scroll back any time to revisit a look.'],
-  ['What comes next?', 'More perspectives, more stories from outside. Our official channels will be shared here as the brand takes its next steps.'],
+  ['What comes next?', 'More perspectives, more stories from outside. Get in touch to hear about the next chapter of LOOP.'],
 ]
 
 export function ContactSection() {
   return <section id="contact" className="section contact-section" aria-labelledby="contact-title">
     <p className="eyebrow">04 / LET’S FIND COMMON GROUND</p>
     <h2 id="contact-title">STAY IN<br /><span>THE LOOP</span></h2>
-    <div className="contact-grid"><div><h3>See you out there</h3><p className="body-copy">Questions about the collection or what comes next? Our official channels are on their way.</p>{contactChannels.map(channel => <div className="contact-channel" key={channel.name}><span>{channel.name}</span>{channel.url ? <a href={channel.url}>Get in touch ↗</a> : <span>Coming soon</span>}</div>)}</div><div className="faq-list"><p className="eyebrow">A FEW THINGS TO KNOW</p>{faqs.map(([question, answer]) => <article key={question}><h3>{question}</h3><p>{answer}</p></article>)}</div></div>
+    <div className="contact-grid"><div><h3>See you out there</h3><p className="body-copy">Questions about the collection or what comes next? Get in touch by phone or email.</p>{contactChannels.map(channel => <div className="contact-channel" key={channel.name}><span>{channel.name}</span>{channel.url ? <a href={channel.url}>{channel.label ?? 'Get in touch ↗'}</a> : <span>Coming soon</span>}</div>)}</div><div className="faq-list"><p className="eyebrow">A FEW THINGS TO KNOW</p>{faqs.map(([question, answer]) => <article key={question}><h3>{question}</h3><p>{answer}</p></article>)}</div></div>
   </section>
 }
