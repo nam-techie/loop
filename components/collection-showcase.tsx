@@ -115,7 +115,7 @@ export function CollectionShowcase() {
   if (!current) return null
 
   return <section id="collections" className="collection" aria-labelledby="collection-title">
-    <div className="section collection-intro"><p className="eyebrow">02 / THE FIELD COLLECTION</p><h2 id="collection-title">ONE LOOP.<br /><span>TWO EXPRESSIONS.</span></h2><div className="collection-intro-bottom"><p>One silhouette. Forest and Warm White.<br />A collection told one photograph at a time.</p><p className="scroll-cue">Keep scrolling to explore <span aria-hidden="true">↓</span></p></div></div>
+    <div className="section collection-intro"><p className="eyebrow">02 / THE FIELD COLLECTION</p><h2 id="collection-title">ONE LOOP<br /><span>TWO EXPRESSIONS</span></h2><div className="collection-intro-bottom"><p>One silhouette. Forest and Warm White<br />A collection told one photograph at a time.</p><p className="scroll-cue">Keep scrolling to explore <span aria-hidden="true">↓</span></p></div></div>
     <div ref={track} className="collection-track" data-mode={mode} style={{ '--frame-count': collectionFrames.length } as CSSProperties}>
       <div ref={stage} className="collection-stage" role="group" aria-label="Collection photo story" data-frame={active + 1}>
         <div className="story-caption" aria-hidden={mode !== 'scroll'}>

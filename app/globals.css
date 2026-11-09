@@ -19,7 +19,7 @@
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
-html { scroll-padding-top: var(--header-height); }
+html { scroll-padding-top: var(--header-height); scrollbar-gutter: stable; }
 body { margin: 0; background: var(--forest); color: var(--cream); font: 400 15px/1.7 var(--body); }
 a { color: inherit; text-decoration: none; }
 button, input, textarea, select, option { font-family: var(--body); font-size: inherit; }
@@ -49,6 +49,30 @@ h3 { font-size: clamp(28px, 3vw, 44px); }
 .site-header nav a { position: relative; padding-block: 14px; font-size: 12px; }
 .site-header nav a[aria-current='location']::after { content: ''; height: 3px; position: absolute; bottom: 5px; left: 0; right: 0; background: var(--orange); }
 .header-note { justify-self: end; font-size: 9px; letter-spacing: .08em; text-align: right; }
+
+/* A timed brand opening; the campaign below keeps its own scroll timeline. */
+.intro-site { display: contents; }
+html:has(.brand-intro) { background: var(--black); }
+.brand-intro { position: fixed; inset: 0; z-index: 500; display: grid; align-items: center; isolation: isolate; background: var(--black); color: var(--cream); overflow: clip; }
+.brand-intro:focus { outline: none; }
+.brand-intro[data-state='pending'] { animation: intro-failsafe 0s 6s forwards !important; }
+@keyframes intro-failsafe { to { visibility: hidden; pointer-events: none; } }
+.intro-scene { position: absolute; inset: 0; z-index: -3; opacity: 0; clip-path: inset(18% 49.8% 18% 49.8%); will-change: clip-path; }
+.intro-scene-image { position: absolute; inset: 0; transform: scale(1.16); }
+.intro-scene-image img { object-position: 65% center; }
+.intro-scene-shade { position: absolute; inset: 0; background: radial-gradient(ellipse at 52% 45%, #01010160 0%, #010101ba 72%), linear-gradient(0deg, #010101b8, #01010155); }
+.intro-trail { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; pointer-events: none; }
+.intro-trail-path { stroke: var(--orange); stroke-width: 1; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; vector-effect: non-scaling-stroke; }
+.intro-signature { position: absolute; top: 26px; left: var(--gutter); opacity: 0; }
+.intro-copy { position: relative; width: 100%; padding-inline: var(--gutter); text-align: center; }
+.intro-line-window { perspective: 1000px; overflow: clip; padding: .1em .08em; }
+.intro-line-window + .intro-line-window { margin-top: clamp(8px, 1.4vw, 24px); }
+.intro-line { font-size: clamp(24px, 8.5vw, 132px); line-height: 1.05; letter-spacing: -.025em; white-space: nowrap; transform-origin: 50% 100%; backface-visibility: hidden; opacity: 0; transform: translate3d(0, 120%, 0) rotateX(-80deg); will-change: transform, opacity; }
+.intro-line-accent { color: var(--orange); }
+@media (max-width: 767px) {
+  .intro-signature { top: 11px; left: calc(50% - 52.5px); }
+  .intro-signature .brand-wordmark { width: 105px; height: 25px; }
+}
 
 /* Home: forest → gathered photographs → a horizontal editorial filmstrip.
    Native scroll motion remains enabled as explicitly requested by the owner. */
@@ -246,3 +270,5 @@ footer { border-top: 1px solid #f2f0e833; padding: 48px var(--gutter) 24px; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   [data-mode='scroll'] .story-photo { transform: none; }
 }
+
+.brand-full { display: block; width: clamp(240px, 23vw, 320px); aspect-ratio: 956 / 288; background: var(--orange); mask: url('/images/brand/loop-full.png') center / contain no-repeat; }
