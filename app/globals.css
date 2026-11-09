@@ -51,7 +51,7 @@ h3 { font-size: clamp(28px, 3vw, 44px); }
 .header-note { justify-self: end; font-size: 9px; letter-spacing: .08em; text-align: right; }
 
 /* Home: forest → gathered photographs → a horizontal editorial filmstrip.
-   The default is normal document flow, including reduced motion and no JS. */
+   Native scroll motion remains enabled as explicitly requested by the owner. */
 .campaign { background: var(--black); }
 .campaign-stage { position: relative; }
 .hero-opening { position: relative; height: var(--scene-height); min-height: 560px; isolation: isolate; overflow: clip; }
@@ -82,7 +82,7 @@ h3 { font-size: clamp(28px, 3vw, 44px); }
 .field-current { color: var(--orange); }
 .field-line { flex: 1; height: 1px; background: #f2f0e844; }
 .field-line > span { display: block; width: 100%; height: 100%; background: var(--orange); transform: scaleX(var(--field-progress, 0)); transform-origin: left; }
-@media (min-height: 650px) and (prefers-reduced-motion: no-preference) {
+@media (min-height: 650px) {
   .campaign[data-motion='scroll'] { height: calc(4.8 * var(--scene-height)); }
   [data-motion='scroll'] .campaign-stage { position: sticky; top: var(--header-height); height: var(--scene-height); overflow: clip; isolation: isolate; }
   [data-motion='scroll'] .hero-opening { position: absolute; inset: 0; height: 100%; min-height: 0; opacity: var(--hero-opacity, 1); transform: translate3d(0, calc(var(--departure, 0) * -24%), 0); }
@@ -95,11 +95,13 @@ h3 { font-size: clamp(28px, 3vw, 44px); }
   [data-motion='scroll'] .field-card { position: absolute; top: 0; left: 0; width: var(--card-width, 240px); will-change: transform; backface-visibility: hidden; }
   [data-motion='scroll'] .field-card-image { height: var(--card-height, 320px); aspect-ratio: auto; box-shadow: 0 20px 50px #01010180; }
   [data-motion='scroll'] .field-card figcaption { opacity: var(--field-caption-opacity, 0); }
-  [data-motion='scroll'] .field-footer { position: absolute; bottom: 28px; left: var(--gutter); right: var(--gutter); margin: 0; opacity: var(--field-caption-opacity, 0); }
+  [data-motion='scroll'] .field-footer { position: absolute; bottom: 84px; left: var(--gutter); right: var(--gutter); margin: 0; opacity: var(--field-caption-opacity, 0); }
   [data-motion='scroll'] .field-position { display: flex; }
+  [data-motion='scroll'] .field-ribbon { position: absolute; bottom: 0; left: 0; right: 0; height: 44px; margin: 0; font-size: 24px; line-height: 44px; }
 }
 .campaign[data-motion='flow'] .field-card { transform: none !important; }
 .ticker { background: var(--orange); color: var(--black); white-space: nowrap; overflow: hidden; text-align: center; font-weight: 700; font-size: clamp(22px, 3.3vw, 50px); line-height: 1.9; letter-spacing: -.025em; }
+.field-ribbon { margin: 48px calc(-1 * var(--gutter)) -48px; }
 
 /* Without JS, every image remains visible in ordinary document order. */
 .collection-intro { padding-bottom: 52px; }
@@ -192,7 +194,7 @@ footer { border-top: 1px solid #f2f0e833; padding: 48px var(--gutter) 24px; }
   .field-footer { flex-wrap: wrap; gap: 28px; margin-top: 40px; }
   [data-motion='scroll'] .field-heading { top: 32px; }
   [data-motion='scroll'] .field-heading h2 { font-size: clamp(36px, 9.8vw, 64px); }
-  [data-motion='scroll'] .field-footer { bottom: 24px; gap: 24px; align-items: center; }
+  [data-motion='scroll'] .field-footer { bottom: 76px; gap: 16px; align-items: center; }
   [data-motion='scroll'] .field-note { display: none; }
   [data-motion='scroll'] .field-position { width: 100%; }
   [data-motion='scroll'] .field-footer .scroll-cue { font-size: 11px; }

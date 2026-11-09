@@ -13,7 +13,9 @@ export function Campaign() {
     const scene = sceneRef.current
     const stage = stageRef.current
     if (!scene || !stage) return
-    const media = matchMedia('(min-height:650px) and (prefers-reduced-motion:no-preference)')
+    // Home's scroll choreography is explicitly requested even when the browser
+    // reports reduced motion. It moves only with native scrolling, never autoplay.
+    const media = matchMedia('(min-height:650px)')
     const cards = Array.from(scene.querySelectorAll<HTMLElement>('.field-card'))
     const counter = scene.querySelector<HTMLElement>('.field-current')
     let frame = 0
@@ -113,6 +115,7 @@ export function Campaign() {
           <figcaption><span>{String(index + 1).padStart(2, '0')}</span><span>{item.label}</span></figcaption>
         </figure>)}</div>
         <div className="field-footer"><p className="field-note">A change of scenery.<br /><span>A return to yourself.</span></p><div className="field-position" aria-hidden="true"><span className="field-current">01</span><span className="field-line"><span /></span><span>{String(campaignFrames.length).padStart(2, '0')}</span></div><p className="scroll-cue">The collection is next <span aria-hidden="true">↓</span></p></div>
+        <div className="ticker field-ribbon" aria-hidden="true">MOVE YOUR WAY ↗ ADAPT TO TRAIL ↗ MOVE YOUR WAY ↗</div>
       </div>
     </div>
   </section>

@@ -12,7 +12,7 @@ export function getCampaignFrame(progress: number, width: number, height: number
   const total = Math.max(1, Math.floor(Number.isFinite(count) ? count : 1))
   const compact = w < 768
   const cardWidth = compact ? clamp(w * .49, 146, 240) : clamp(w * .205, 190, 300)
-  const cardHeight = Math.min(cardWidth * 1.32, h * (h < 650 ? .4 : .49))
+  const cardHeight = Math.min(cardWidth * 1.32, h * (h < 650 ? .34 : .49))
   const gap = compact ? 18 : clamp(w * .023, 22, 36)
   const firstX = w * (compact ? .43 : .2)
   const lastX = firstX + (total - 1) * (cardWidth + gap)
@@ -30,7 +30,7 @@ export function getCampaignFrame(progress: number, width: number, height: number
     const rowX = firstX + i * (cardWidth + gap) - travel * distance
     return {
       x: mix(pileX, rowX, spread),
-      y: mix(pileY, h * (compact ? .51 : h < 650 ? .58 : .56) + stagger[seed] * h, spread),
+      y: mix(pileY, h * (compact ? .51 : h < 650 ? .54 : .51) + stagger[seed] * h, spread),
       rotate: mix(rotations[seed], rotations[seed] * .15, spread),
       rotateY: mix(-26 + seed * 5, 0, spread),
       rotateX: mix(12, 0, spread),
