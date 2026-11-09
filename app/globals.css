@@ -42,7 +42,7 @@ h3 { font-size: clamp(28px, 3vw, 44px); }
 .site-header { position: sticky; top: 0; z-index: 100; height: var(--header-height); padding-inline: var(--gutter); display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; background: var(--forest); border-bottom: 1px solid #f2f0e833; }
 .brand-link { display: inline-flex; width: fit-content; align-items: center; min-height: 44px; }
 .brand-lockup { display: inline-flex; align-items: center; gap: 20px; }
-.brand-wordmark { display: block; width: 126px; height: 30px; background: var(--cream); mask: url('/images/brand/loop-wordmark.png') center 55% / 120.55% auto no-repeat; }
+.brand-wordmark { display: block; width: 126px; height: 30px; background: var(--orange); mask: url('/images/brand/loop-wordmark.png') center 55% / 120.55% auto no-repeat; }
 .brand-emblem { display: block; width: 42px; height: 62px; background: var(--orange); mask: url('/images/brand/loop-emblem.png') center / 156% auto no-repeat; }
 .brand-lockup-footer .brand-wordmark { width: 180px; height: 42px; }
 .site-header nav { display: flex; gap: clamp(16px, 2.7vw, 40px); }
