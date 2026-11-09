@@ -1,18 +1,6 @@
-import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
+import { StoreShell } from '@/components/store-shell'
 import './globals.css'
-
-export const metadata: Metadata = {
-  title: 'LOOP. — Utility clothing for outside the lines',
-  description: 'LOOP is a study of movement, utility, and the places where city meets wild.',
-  generator: 'v0.app',
-}
-
-export const viewport: Viewport = {
-  colorScheme: 'dark',
-  themeColor: '#002901',
-}
-
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body className="antialiased">{children}{process.env.NODE_ENV === 'production' && <Analytics />}</body></html>
-}
+export const metadata: Metadata = { title: { default: 'LOOP — Adapt to Trail', template: '%s — LOOP' }, description: 'Trail spirit. Everyday expression. Discover the LOOP Trail Long Sleeve in Forest and Warm White.' }
+export const viewport: Viewport = { themeColor: '#033224', colorScheme: 'dark' }
+export default function RootLayout({children}: {children: React.ReactNode}) { return <html lang="en"><body><StoreShell>{children}</StoreShell></body></html> }
