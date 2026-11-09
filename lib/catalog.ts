@@ -3,6 +3,19 @@ export const photo = (id: string) => `/images/loop-${id}.webp`
 export const colorName = (color: Color) => color === 'forest' ? 'Forest' : 'Warm White'
 export const collection = { name: 'LOOP Trail Long Sleeve' }
 
+// Home's editorial filmstrip. These are scenes from the same collection, not
+// separate products. Order and count can change without changing the animation.
+export const campaignFrames = [
+  { id: '6809', label: 'Find your own way', position: '50% 42%', alt: 'Forest LOOP long sleeve worn between sunlit trees' },
+  { id: '6489', label: 'Follow the feeling', position: '50% 45%', alt: 'Runner in the Warm White LOOP shirt stepping down a forest trail' },
+  { id: '6768', label: 'Closer to the details', position: '50% 50%', alt: 'LOOP embroidery and contrast seams on the Forest shirt' },
+  { id: '6690', label: 'Rooted outside', position: '50% 48%', alt: 'Forest LOOP shirt resting on a bed of moss' },
+  { id: '6558', label: 'Move beyond routine', position: '50% 45%', alt: 'Runner in Warm White moving over a fallen tree' },
+  { id: '6674', label: 'A lighter expression', position: '50% 42%', alt: 'The Warm White LOOP long sleeve worn in the forest' },
+  { id: '6754', label: 'Leave room for outside', position: '50% 50%', alt: 'Warm White LOOP shirt displayed against dark forest leaves' },
+  { id: '6718', label: 'Take the spirit with you', position: '50% 50%', alt: 'Green and orange LOOP collection packaging in the forest' },
+]
+
 // Array order is the scroll order. Add photographs here; the scene length adapts.
 export const collectionFrames: { id: string; mobileId?: string; color: Color; title: string; caption: string; alt: string }[] = [
   { id: '6693', mobileId: '6690', color: 'forest', title: 'Rooted outside.', caption: 'A deeper shade of the everyday. Meet Forest.', alt: 'Forest LOOP shirt laid across moss-covered rocks' },
