@@ -98,23 +98,23 @@ export function Campaign() {
       <div className="hero-opening">
         <Image className="hero-background" src={photo('6693')} alt="Forest green LOOP shirt resting on moss-covered rocks" fill preload sizes="100vw" />
         <div className="hero-shade" />
-        <div className="hero-meta"><span>LOOP / FIELD COLLECTION 01</span><span>TRAIL SPIRIT. EVERYDAY EXPRESSION.</span></div>
+        <div className="hero-meta"><span>LOOP / FIELD COLLECTION 01</span><span>TRAIL SPIRIT. EVERYDAY EXPRESSION</span></div>
         <div className="hero-copy">
           <p className="eyebrow">A DIFFERENT WAY OUT.</p>
-          <h1 id="home-title">ADAPT<br />TO <span>TRAIL.</span></h1>
-          <div className="hero-bottom"><p>Leave the routine behind.<br />Find your rhythm outside.</p><p className="scroll-cue">Scroll into the field <span aria-hidden="true">↓</span></p></div>
+          <h1 id="home-title">ADAPT<br /><span>TO TRAIL</span></h1>
+          <div className="hero-bottom"><p>Leave the routine behind<br />Find your rhythm outside.</p><p className="scroll-cue">Scroll into the field <span aria-hidden="true">↓</span></p></div>
         </div>
         <span className="hero-index">01 / IN YOUR ELEMENT</span>
-        <span className="hero-edge" aria-hidden="true">THE EVERYDAY ENDS HERE.</span>
+        <span className="hero-edge" aria-hidden="true">THE EVERYDAY ENDS HERE</span>
       </div>
 
       <div className="field-gallery" aria-labelledby="field-title">
-        <div className="field-heading"><div><p className="eyebrow">A FEW MOMENTS OUTSIDE</p><h2 id="field-title">OUTSIDE THE<br /><span>EVERYDAY.</span></h2></div><p>One collection. Countless ways out.<br />Follow the thread, frame by frame.</p></div>
+        <div className="field-heading"><div><p className="eyebrow">A FEW MOMENTS OUTSIDE</p><h2 id="field-title">OUTSIDE THE<br /><span>EVERYDAY</span></h2></div><p>One collection. Countless ways out<br />Follow the thread, frame by frame.</p></div>
         <div className="field-cards">{campaignFrames.map((item, index) => <figure className="field-card" key={item.id}>
           <div className="field-card-image"><Image src={photo(item.id)} alt={item.alt} fill sizes="(max-width:767px) 52vw, (max-width:1440px) 25vw, 320px" style={{ objectPosition: item.position }} /></div>
           <figcaption><span>{String(index + 1).padStart(2, '0')}</span><span>{item.label}</span></figcaption>
         </figure>)}</div>
-        <div className="field-footer"><p className="field-note">A change of scenery.<br /><span>A return to yourself.</span></p><div className="field-position" aria-hidden="true"><span className="field-current">01</span><span className="field-line"><span /></span><span>{String(campaignFrames.length).padStart(2, '0')}</span></div><p className="scroll-cue">The collection is next <span aria-hidden="true">↓</span></p></div>
+        <div className="field-footer"><p className="field-note">A change of scenery<br /><span>A return to yourself</span></p><div className="field-position" aria-hidden="true"><span className="field-current">01</span><span className="field-line"><span /></span><span>{String(campaignFrames.length).padStart(2, '0')}</span></div><p className="scroll-cue">The collection is next <span aria-hidden="true">↓</span></p></div>
         <div className="ticker field-ribbon" aria-hidden="true">MOVE YOUR WAY ↗ ADAPT TO TRAIL ↗ MOVE YOUR WAY ↗</div>
       </div>
     </div>

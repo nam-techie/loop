@@ -29,7 +29,7 @@ export function StoreShell({ children }: { children: ReactNode }) {
     <header className="site-header">
       <a className="brand-link" href="/#home" aria-label="LOOP home"><BrandLogo /></a>
       <nav aria-label="Page sections">{sections.map(({ id, label }) => <a key={id} href={`/#${id}`} aria-current={active === id ? 'location' : undefined}>{label}</a>)}</nav>
-      <span className="header-note">A FIELD STUDY IN MOVEMENT</span>
+      <span className="header-note">ADAPT TO TRAIL</span>
     </header>
     <main id="main">{children}</main>
     <footer>
