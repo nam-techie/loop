@@ -1,5 +1,9 @@
 # LOOP Brand Rules
 
+## Latest logo and body font request
+
+Use the supplied `image/logo/logo moi.png` lockup in the header, intro, and footer. Its tightly cropped published copy is `public/images/brand/loop-new.png`; the silhouette mask `loop-new-mask.png` renders it in Warm Off-White for contrast on green and black backgrounds. Preserve its proportions. Use Be Vietnam Pro for all non-heading text, self-hosted under `public/fonts`. AVEGA remains the heading font. This update supersedes the older logo and Roboto Slab directions below.
+
 
 
 ## Source of truth
@@ -59,3 +63,6 @@ Use lg2.png (wordmark) in the header and lg1.png (emblem) alongside the wordmark
 
 ## Approved logo and headline update
 Use image/logo/LOOP.png as the complete footer logo, including its original emblem, wordmark and tagline proportions. Publish an unchanged copy as public/images/brand/loop-full.png and use an alpha mask with Blaze Punch #FD3E00. Header and intro retain the orange wordmark. All display headings and collection titles omit terminal periods. The full TO TRAIL phrase in the Home heading is orange. Paragraph punctuation remains normal.
+
+## Approved terrain background
+Use the supplied image/logo/backgeound.png contour artwork unchanged, published as public/images/brand/loop-topography.png. Its supplied translucent green tones are approved as artwork over the Forest Voltage interface background. Show it behind the green content areas, including Collections, About, Contact and the footer; keep the header solid and the existing black intro/gallery and photography opaque. Follow the supplied reference video: use one greatly enlarged image only, never repeated tiles. Set its width to max(150% of the viewport layer, 170svh), preserving the original aspect ratio; this always supplies more image height than the viewport. Pan it downward by mapping document scroll progress from background-position-y 100% to 0%, reversing naturally when scrolling back. Keep that position clamped to the single image so the background cannot run out or jump back to another copy. Recalculate when the document or viewport size changes. This movement is explicitly requested; do not silently disable it based on the system motion setting. Use a passive scroll listener and a single requestAnimationFrame update, with cleanup on unmount. The decorative layer must never intercept input, change document height or cover text/photos.

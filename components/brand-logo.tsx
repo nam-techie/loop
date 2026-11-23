@@ -1,8 +1,4 @@
-/** Official supplied PNG silhouettes, colored through their original alpha masks. */
+/** The supplied LOOP lockup, shared by the header, intro, and footer. */
 export function BrandLogo({ emblem = false }: { emblem?: boolean }) {
-  if (emblem) return <span className="brand-full" aria-hidden="true" />
-  return <span className={`brand-lockup${emblem ? ' brand-lockup-footer' : ''}`} aria-hidden="true">
-    {emblem && <span className="brand-emblem" />}
-    <span className="brand-wordmark" />
-  </span>
+  return <span className={emblem ? 'brand-new brand-new-footer' : 'brand-new'} aria-hidden="true" />
 }
