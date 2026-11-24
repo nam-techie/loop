@@ -2,7 +2,6 @@
 
 import { useEffect, useState, type ReactNode } from 'react'
 import { BrandLogo } from './brand-logo'
-import { TerrainBackground } from './terrain-background'
 
 const sections = [
   { id: 'home', label: 'Home' },
@@ -26,7 +25,6 @@ export function StoreShell({ children }: { children: ReactNode }) {
   }, [])
 
   return <>
-    <TerrainBackground />
     <a className="skip" href="#main">Skip to content</a>
     <header className="site-header">
       <a className="brand-link" href="/#home" aria-label="LOOP home"><BrandLogo /></a>
